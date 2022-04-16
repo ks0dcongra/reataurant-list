@@ -6,7 +6,7 @@ const restaurantList = require('./restaurant.json')
 const mongodb_url = require('./mongodb_url')
 const mongoose = require('mongoose') // 載入 mongoose
 const bodyParser = require("body-parser")
-const restaurantSeed = require('./models/restaurant') // 載入 Todo model
+const Restaurant = require('./models/restaurant') // 載入 Todo model
 
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -31,23 +31,51 @@ db.once('open', () => {
 
 
 app.get('/', (req, res) => {
-  restaurantSeed.find() // 取出 Todo model 裡的所有資料
+  Restaurant.find() // 取出 Todo model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .then(restaurantSeed => res.render('index', { restaurantSeed})) // 將資料傳給 index 樣板
+    .then(restaurants => res.render('index', { restaurants: restaurants })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
-  // res.render('index', { restaurants: restaurantList.results })
+  // res.render('index', { restaurants: Restaurant })
+})
+
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  console.log(req.body)
+  const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const rating = req.body.rating
+  const description = req.body.description
+  const google_map = req.body.google_map;
+
+  // const restaurant = new restaurant({ name })
+  // return restaurant.save()
+  //   .then(() => res.redirect('/'))
+  //   .catch(error => console.log(error))
+  return Restaurant.create({ name, name_en, category, image, location, phone, description, rating, google_map })     // 存入資料庫
+    .then(() => res.redirect('/')) // 新增完成後導回首頁
+    .catch(error => console.log(error))
 })
 
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant =>
-    restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
+  console.log(req.params)
+  const id = req.params.restaurant_id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
-  const restaurants = restaurantList.results.filter(
+  const restaurants = Restaurant.filter(
     (restaurant) => {
       return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
         restaurant.category.toLowerCase().includes(keyword.toLowerCase())
