@@ -15,7 +15,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="name" class="form-control" id="name" placeholder="name"
-                  value="{{restaurants.name}}">
+                  value="{{restaurant.name}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -26,7 +26,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="name_en" class="form-control" id="name_en" placeholder="name_en"
-                  value="{{restaurants.name_en}}">
+                  value="{{restaurant.name_en}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -37,7 +37,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="category" class="form-control" id="category" placeholder="category"
-                  value="{{restaurants.category}}">
+                  value="{{restaurant.category}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -48,7 +48,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="image" class="form-control" id="image" placeholder="image"
-                  value="{{restaurants.image}}">
+                  value="{{restaurant.image}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -59,7 +59,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="location" class="form-control" id="location" placeholder="location"
-                  value="{{restaurants.location}}">
+                  value="{{restaurant.location}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -70,7 +70,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="phone" class="form-control" id="phone" placeholder="phone"
-                  value="{{restaurants.phone}}">
+                  value="{{restaurant.phone}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -83,7 +83,7 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="google_map" class="form-control" id="google_map" placeholder="google_map"
-                  value="{{restaurants.google_map}}">
+                  value="{{restaurant.google_map}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
@@ -93,8 +93,8 @@
                 rating
               </label>
               <div class="col-md-8">
-                <input type="number" name="rating" class="form-control" id="rating" min="4" max="16"
-                  placeholder="rating" value="{{restaurants.rating}}">
+                <input type="float" name="rating" class="form-control" id="rating" min="1.0" max="5.0"
+                  placeholder="rating" value="{{restaurant.rating}}">
                 <small class="text-muted form-text">rating is available between 1 ~ 5</small>
               </div>
             </div>
@@ -105,12 +105,12 @@
               </label>
               <div class="col-md-8">
                 <input type="text" name="description" class="form-control" id="description" placeholder="description"
-                  value="{{restaurants.description}}">
+                  value="{{restaurant.description}}">
                 <small class="text-muted form-text">欄位不能留白!</small>
               </div>
             </div>
 
-            <button class="btn btn-success" type="submit">Create</button>
+            <button class="btn btn-success" type="submit">Edit</button>
 
           </form>
         </div>

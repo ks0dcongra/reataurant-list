@@ -21,9 +21,9 @@
         </div>
       </form>
     </div>
-
+    <div class="create"> <input type="button"  value="Create" onclick="location.href='./restaurants/new'"></div>
     {{!-- <a href="./restaurants/new">Create</a> --}}
-    <input type="button" value="Create" onclick="location.href='./restaurants/new'">
+
   </div>
 </div>
 
@@ -40,7 +40,7 @@
         {{#each restaurants}}
         <a href="./restaurants/{{this._id}}" class="text-secondary">
           <div class="card mb-3">
-            <img class="card-img-top" src="{{this.image}}" alt="Sababa 沙巴巴中東美食">
+            <img class="card-img-top" src="{{this.image}}" alt="無法顯示的餐廳">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
 
@@ -55,11 +55,14 @@
             </div>
           </div>
         </a>
-        <input type="button" value="detail" onclick="location.href='./restaurants/{{ this._id }}'">
-        <input type="button" value="edit" onclick="location.href='./restaurants/{{ this._id }}/edit'">
-        <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
-          <button type="submit">delete</button>
-        </form>
+        <div class="control-panel">
+          <input type="button" value="detail" onclick="location.href='./restaurants/{{ this._id }}'">
+          <input type="button" value="edit" onclick="location.href='./restaurants/{{ this._id }}/edit'">
+          <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+            <button type="submit">delete</button>
+          </form>
+        </div>
+
         {{/each}}
       </div>
     </div>

@@ -78,6 +78,21 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  margin: 0px 0px 10px 0px;
+}
+
+.create {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
 @media screen and (max-width: 992px) {
 
   .card img {

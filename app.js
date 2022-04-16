@@ -2,12 +2,11 @@ const express = require('express')
 const app = express()
 const port = 3030
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
+// const restaurantList = require('./restaurant.json')
 const mongodb_url = require('./mongodb_url')
 const mongoose = require('mongoose') // 載入 mongoose
 const bodyParser = require("body-parser")
 const Restaurant = require('./models/restaurant') // 載入 Todo model
-const restaurant = require('./models/restaurant')
 
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -55,7 +54,7 @@ app.post('/restaurants', (req, res) => {
   const phone = req.body.phone
   const rating = req.body.rating
   const description = req.body.description
-  const google_map = req.body.google_map;
+  const google_map = req.body.google_map
 
   // const restaurant = new restaurant({ name })
   // return restaurant.save()
@@ -88,7 +87,7 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
-//編輯單一頁面get
+//編輯單一頁Get
 app.get('/restaurants/:restaurant_id/edit', (req, res) => {
   const id = req.params.restaurant_id
   return Restaurant.findById(id)
@@ -97,15 +96,31 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//編輯單一頁面post
+//編輯單一頁面Post
 app.post('/restaurants/:restaurant_id/edit', (req, res) => {
   const id = req.params.restaurant_id
-  // console.log(id)
-  const name = req.body.name
+  const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const rating = req.body.rating
+  const description = req.body.description
+  const google_map = req.body.google_map
+  
   console.log(name)
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
+      restaurant.name_en = name_en
+      restaurant.category = category
+      restaurant.image = image
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.rating = rating
+      restaurant.description = description
+      restaurant.google_map = google_map
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))

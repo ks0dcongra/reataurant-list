@@ -67,6 +67,21 @@ header {
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+.show-control-panel{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #eee;
+  margin: 0px 0px 10px 0px;
+}
+
+.edit{
+  margin: 5px;
+}
+
+.delete{
+  margin: 5px;
+}
 
 @media screen and (max-width: 768px) {
   .restaurant-show-title {
