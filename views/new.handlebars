@@ -1,0 +1,127 @@
+<form action="/restaurants" method="post">
+  <input type="text" placeholder="name" name="name">
+  <button type="sumbit">Create</button>
+</form>
+
+
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Create Restaurant <i class="fas fa-key"></i></h5>
+          <hr>
+
+          <form method="POST" action="/restaurants">
+
+            <div class="row g-2 mb-3">
+              <label for="name" class="col-md-4 col-form-label">
+                name
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name" class="form-control" id="name" placeholder="name"
+                  value="{{options.name}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <label for="name_en" class="col-md-4 col-form-label">
+                name_en
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name_en" class="form-control" id="name_en" placeholder="name_en"
+                  value="{{options.name_en}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <label for="category" class="col-md-4 col-form-label">
+                category
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="category" class="form-control" id="category" placeholder="category"
+                  value="{{category}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <label for="image" class="col-md-4 col-form-label">
+                image
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="image" class="form-control" id="image" placeholder="image"
+                  value="{{image}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <label for="location" class="col-md-4 col-form-label">
+                location
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="location" class="form-control" id="location" placeholder="location"
+                  value="{{location}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <label for="phone" class="col-md-4 col-form-label">
+                phone
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="phone"
+                  value="{{phone}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+
+
+            <div class="row g-2 mb-3">
+              <label for="google_map" class="col-md-4 col-form-label">
+                google_map
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="google_map" class="form-control" id="google_map"
+                  placeholder="google_map" value="{{options.google_map}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="rating" class="col-md-4 col-form-label">
+                rating
+              </label>
+              <div class="col-md-8">
+                <input type="number" name="rating" class="form-control" id="rating" min="4" max="16"
+                  placeholder="rating" value="{{options.rating}}">
+                <small class="text-muted form-text">rating is available between 1 ~ 5</small>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <label for="description" class="col-md-4 col-form-label">
+                description
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="description" class="form-control" id="description"
+                  placeholder="description" value="{{options.description}}">
+                <small class="text-muted form-text">欄位不能留白!</small>
+              </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Create</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
