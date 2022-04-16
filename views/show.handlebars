@@ -38,6 +38,9 @@
         style="max-width: 600px;">
       <button onclick="location.href='/restaurants/{{restaurant._id }}/edit'" type="button">
         edit</button>
+      <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+        <button type="submit">delete</button>
+      </form>
     </div>
 
   </div>
