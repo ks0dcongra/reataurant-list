@@ -4,6 +4,8 @@
   }
 </script>
 
+
+
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
@@ -27,7 +29,7 @@
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
-        {{#each restaurants}}
+        {{#each restaurantSeed}}
         <a href="/restaurants/{{this.id}}" class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="Sababa 沙巴巴中東美食">
