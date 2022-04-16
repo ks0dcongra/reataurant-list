@@ -7,6 +7,7 @@ const mongodb_url = require('./mongodb_url')
 const mongoose = require('mongoose') // 載入 mongoose
 const bodyParser = require("body-parser")
 const Restaurant = require('./models/restaurant') // 載入 Todo model
+const restaurant = require('./models/restaurant')
 
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -29,7 +30,7 @@ db.once('open', () => {
 })
 
 
-
+//渲染多個頁面
 app.get('/', (req, res) => {
   Restaurant.find() // 取出 Todo model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
@@ -38,12 +39,14 @@ app.get('/', (req, res) => {
   // res.render('index', { restaurants: Restaurant })
 })
 
+//新增單一頁面
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
+//渲染多個頁面
 app.post('/restaurants', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
   const name_en = req.body.name_en
   const category = req.body.category
@@ -63,9 +66,9 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+//瀏覽單一頁面
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  console.log(req.params)
+  // console.log(req.params)
   const id = req.params.restaurant_id
   return Restaurant.findById(id)
     .lean()
@@ -73,6 +76,7 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//搜尋多個頁面
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
   const restaurants = Restaurant.filter(
@@ -82,6 +86,30 @@ app.get('/search', (req, res) => {
     }
   )
   res.render('index', { restaurants: restaurants, keyword: keyword })
+})
+
+//編輯單一頁面get
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+//編輯單一頁面post
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  // console.log(id)
+  const name = req.body.name
+  console.log(name)
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = name
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
