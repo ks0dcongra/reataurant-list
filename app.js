@@ -1,19 +1,22 @@
 const express = require('express')
 const app = express()
-const port = 3030
+const port = 3060
 const exphbs = require('express-handlebars')
 // const restaurantList = require('./restaurant.json')
 const mongodb_url = require('./mongodb_url')
 const mongoose = require('mongoose') // 載入 mongoose
 const bodyParser = require("body-parser")
 const Restaurant = require('./models/restaurant') // 載入 Todo model
-
+// 載入 method-override
+const methodOverride = require('method-override')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 //連線資料庫
 mongoose.connect(mongodb_url(), { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -97,7 +100,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 //編輯單一頁面Post
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
   const name_en = req.body.name_en
@@ -108,7 +111,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
   const rating = req.body.rating
   const description = req.body.description
   const google_map = req.body.google_map
-  
+
   console.log(name)
   return Restaurant.findById(id)
     .then(restaurant => {
@@ -129,7 +132,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
 
 
 // 刪除餐廳
-app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+app.delete('/restaurants/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
