@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-//新增單一頁面
+//前往新增頁面
 router.get('/new', (req, res) => {
   return res.render('new')
 })
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//瀏覽單一頁面
+//瀏覽單一餐廳
 router.get('/:restaurant_id', (req, res) => {
   // console.log(req.params)
   const id = req.params.restaurant_id
@@ -39,19 +39,9 @@ router.get('/:restaurant_id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//搜尋多個頁面
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword.trim()
-  const restaurants = Restaurant.filter(
-    (restaurant) => {
-      return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        restaurant.category.toLowerCase().includes(keyword.toLowerCase())
-    }
-  )
-  res.render('index', { restaurants: restaurants, keyword: keyword })
-})
 
-//編輯單一頁Get
+
+//編輯單一餐廳-Get
 router.get('/:restaurant_id/edit', (req, res) => {
   const id = req.params.restaurant_id
   return Restaurant.findById(id)
@@ -62,7 +52,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
 
 
 
-//編輯單一頁面Post
+//編輯單一餐廳-Post
 router.put('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
