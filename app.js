@@ -3,17 +3,14 @@ const app = express()
 const port = 3060
 const exphbs = require('express-handlebars')
 // const restaurantList = require('./restaurant.json')
-const mongodb_url = require('./mongodb_url')
-const mongoose = require('mongoose') // 載入 mongoose
+// const mongodb_url = require('./mongodb_url')
+require('./config/mongoose')
 const bodyParser = require("body-parser")
-const Restaurant = require('./models/restaurant') // 載入 Todo model
+// const Restaurant = require('./models/restaurant') // 載入 Todo model
 // 載入 method-override
 const methodOverride = require('method-override')
 // 引用路由器
 const routes = require('./routes')
-
-
-
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -26,19 +23,25 @@ app.use(methodOverride('_method'))
 // 將 request 導入路由器
 app.use(routes)
 
-//連線資料庫
-mongoose.connect(mongodb_url(), { useNewUrlParser: true, useUnifiedTopology: true })
+app.listen(port, () => {
+  console.log(`Express is running on http://localhost:${port}`);
+})
 
-// 取得資料庫連線狀態
-const db = mongoose.connection
-// 連線異常
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-// 連線成功
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
+// const mongoose = require('mongoose') // 載入 mongoose
+// //連線資料庫
+// mongoose.connect(mongodb_url(), { useNewUrlParser: true, useUnifiedTopology: true })
+
+// // 取得資料庫連線狀態
+// const db = mongoose.connection
+// // 連線異常
+// db.on('error', () => {
+//   console.log('mongodb error!')
+// })
+// // 連線成功
+// db.once('open', () => {
+//   console.log('mongodb connected!')
+// })
+
 
 
 
@@ -151,6 +154,3 @@ db.once('open', () => {
 //     .catch(error => console.log(error))
 // })
 
-app.listen(port, () => {
-  console.log(`Express is running on http://localhost:${port}`);
-})

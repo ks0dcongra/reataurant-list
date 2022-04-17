@@ -21,7 +21,7 @@
         </div>
       </form>
     </div>
-    <div class="create"> <input type="button"  value="Create" onclick="location.href='./restaurants/new'"></div>
+    <div class="create"> <input type="button" value="Create" onclick="location.href='./restaurants/new'"></div>
     {{!-- <a href="./restaurants/new">Create</a> --}}
 
   </div>
@@ -35,37 +35,38 @@
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
+    <div class="col-md-12 col-12 mx-auto ">
+      <div class="card-columns blockDiv">
         {{#each restaurants}}
-        <a href="./restaurants/{{this._id}}" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="{{this.image}}" alt="無法顯示的餐廳">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">{{this.name}}</h6>
+        <div class="block card-component">
+          <a href="./restaurants/{{this._id}}" class="text-secondary ">
+            <div class="card mb-3">
+              <img class="card-img-top" src="{{this.image}}" alt="無法顯示的餐廳">
+              <div class="card-body p-3">
+                <h6 class="card-title mb-1">{{this.name}}</h6>
 
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> {{this.category}}
+                <div class="restaurant-category mb-1">
+                  <i class="fas fa-utensils pr-2"></i> {{this.category}}
+                </div>
+
+                <span class="badge badge-pill badge-danger font-weight-normal">
+                  {{this.rating}}
+                  <i class="fas fa-star fa-xs"></i>
+                </span>
               </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                {{this.rating}}
-                <i class="fas fa-star fa-xs"></i>
-              </span>
+              <div class="control-panel ">
+                <input class="control-panel-component"type="button" value="detail" onclick="location.href='./restaurants/{{ this._id }}'">
+                <input class="control-panel-component"type="button" value="edit" onclick="location.href='./restaurants/{{ this._id }}/edit'">
+                <form class="control-panel-component" action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+                  <button type="submit">delete</button>
+                </form>
+              </div>
             </div>
-          </div>
-        </a>
-        <div class="control-panel">
-          <input type="button" value="detail" onclick="location.href='./restaurants/{{ this._id }}'">
-          <input type="button" value="edit" onclick="location.href='./restaurants/{{ this._id }}/edit'">
-          <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-            <button type="submit">delete</button>
-          </form>
+          </a>
         </div>
 
         {{/each}}
       </div>
     </div>
-
   </div>
 </div>

@@ -1,5 +1,5 @@
 header {
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .navbar .navbar-brand {
@@ -80,17 +80,21 @@ header {
 
 .control-panel {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
   background-color: white;
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 5px 0px;
+}
+
+.control-panel-component {
+  margin: 2px;
 }
 
 .create {
   margin-top: 20px;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 992px) {
