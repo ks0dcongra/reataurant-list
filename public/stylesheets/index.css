@@ -1,16 +1,33 @@
 header {
   overflow: scroll;
+
+}
+
+body {
+  position: relative;
+  /* z-index: -1; */
+  margin: -5px;
+  height: 360px;
+  background: #dddddd center center url('https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg');
+  background-size: cover;
+  /* filter: blur(3px); */
+}
+
+.navbar {
+  display: flex;
+
 }
 
 .navbar .navbar-brand {
   color: #4592af;
+
 }
 
 .navbar .navbar-brand:hover {
   color: #226089;
 }
 
-.banner {
+/* .banner {
   position: relative;
   z-index: -1;
   margin: -5px;
@@ -18,6 +35,10 @@ header {
   background: #dddddd center center url('https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg');
   background-size: cover;
   filter: blur(3px);
+} */
+.search-bar {
+  position: relative;
+  right: 215px;
 }
 
 .search-bar .search-bar-outer {
@@ -33,6 +54,20 @@ header {
 
 .search-bar .search-bar-inner h4 {
   color: #9b4b4b;
+}
+
+.dropdown {
+  position: relative;
+  left: 480px;
+  bottom: 25px;
+  margin: 0 auto;
+  max-width: 680px;
+  background-color: #fce2cf;
+  border-radius: 8px;
+  padding: 20px 30px;
+  border: 0;
+  margin-top: -60px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-control::placeholder {
@@ -78,6 +113,10 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.delete-button {
+  margin-bottom: 100px;
+}
+
 .control-panel {
   display: flex;
   justify-content: flex-end;
@@ -86,7 +125,7 @@ header {
 }
 
 .control-panel-component {
-  margin: 2px;
+  margin: 8px;
 }
 
 .create {
