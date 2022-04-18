@@ -7,9 +7,9 @@ const Restaurant = require('../../models/restaurant')
 
 //渲染多個餐廳
 router.get('/', (req, res) => {
-  return Restaurant.find() // 取出 Todo model 裡的所有資料
+  Restaurant.find() // 取出 Todo model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .sort({ _id: 'desc' }) // desc
+    .sort({ _id: 'asc' }) // desc
     .then(restaurants => res.render('index', { restaurants: restaurants })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
   // res.render('index', { restaurants: Restaurant })
@@ -17,33 +17,12 @@ router.get('/', (req, res) => {
 
 //搜尋多個頁面
 router.get('/search', (req, res) => {
-  let keyword = req.query.keywords
-  let sort = `'${req.query.option}'`
-
-  if (!keyword) {
-    keyword = ''
+  if (!req.query.keywords) {
+    res.redirect("/")
   }
 
-  if (sort.includes('asc')) {
-    sort = 'name'
-  } else if (sort.includes('desc')) {
-    sort = '-name'
-  } else if (sort.includes('category')) {
-    sort = 'category'
-  } else {
-    sort = 'location'
-  }
-
-
-
-
-  keyword = keyword.trim().toLowerCase()
-
-
-
-
-
-
+  const keyword = req.query.keywords.trim().toLowerCase()
+  const sort = req.query.sort
   Restaurant.find()
     .lean()
     .sort(sort)
@@ -52,7 +31,7 @@ router.get('/search', (req, res) => {
         return restaurant.name.toLowerCase().includes(keyword) ||
           restaurant.category.toLowerCase().includes(keyword)
       })
-      res.render('index', { restaurants: filterRestaurants, keyword, sort })
+      res.render('index', { restaurants: filterRestaurants, keyword })
     })
     .catch(error => console.log(error))
 })
