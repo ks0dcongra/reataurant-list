@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
     .sort({ _id: 'desc' }) // desc
     .then(restaurants => res.render('index', { restaurants: restaurants })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
-  // res.render('index', { restaurants: Restaurant })
 })
 
 //搜尋多個頁面
@@ -56,34 +55,6 @@ router.get('/search', (req, res) => {
     })
     .catch(error => console.log(error))
 })
-
-// router.get("/search", (req, res) => {
-//   if (!req.query.keywords) {
-//     res.redirect("/")
-//   }
-
-//   const keywords = req.query.keywords
-//   const keyword = req.query.keywords.trim().toLowerCase()
-
-//   Restaurant.find({})
-//     .lean()
-//     .then(restaurantsData => {
-//       const filterRestaurantsData = restaurantsData.filter(
-//         data =>
-//           data.name.toLowerCase().includes(keyword) ||
-//           data.category.includes(keyword)
-//       )
-//       res.render("index", {
-//         restaurantsData: filterRestaurantsData,
-//         keywords,
-//       })
-//     })
-//     .catch(err => console.log(err))
-// })
-
-
-
-
 
 // 匯出路由模組
 module.exports = router
