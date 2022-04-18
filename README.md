@@ -68,7 +68,12 @@ $ nvm use 14.16.0
 $ node -v
 ```
 
-9.開啟程式
+9.下載mongoose套件
+```
+npm i mongoose@5.9.7
+```
+
+10.開啟程式
 ```
 npm run dev 
 ```
