@@ -26,13 +26,13 @@
 1.開啟終端機(Terminal)cd 到存放專案本機位置並執行:
 
 ```
-git clone https://github.com/ks0dcongra/Restaurant_List.git
+git clone https://github.com/ks0dcongra/reataurant-list.git
 ```
 
 2.進入專案資料夾
 
 ```
-cd restaurant_list
+cd restaurant-list
 ```
 
 ### 3.~8.為若你過去沒有下載過node.js，所需要執行的事，若曾經使用過node.js請跳至9.。
@@ -78,10 +78,8 @@ npm run dev
 終端顯示 `Express is running on http://localhost:3000` 即啟動完成，請至[http://localhost:3000](http://localhost:3000)開始使用程式
 
 ## 系統截圖
-![首頁](https://github.com/ks0dcongra/Restaurant_List/blob/main/restaurant_list/public/img/0.jpg)
-![搜尋成功](https://github.com/ks0dcongra/Restaurant_List/blob/main/restaurant_list/public/img/1.jpg)
-![搜尋失敗](https://github.com/ks0dcongra/Restaurant_List/blob/main/restaurant_list/public/img/3.jpg)
-![單一餐廳詳細資料](https://github.com/ks0dcongra/Restaurant_List/blob/main/restaurant_list/public/img/2.jpg)
+![搜尋排序完之首頁](https://github.com/ks0dcongra/Restaurant_List/blob/main/restaurant_list/public/imgur/5.jpg)
+
 
 
 ## 使用工具
