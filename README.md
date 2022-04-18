@@ -78,7 +78,7 @@ npm i mongoose@5.9.7
 npm run dev 
 ```
 
-10.打開瀏覽器網址列輸入 http://localhost:3000/
+11.打開瀏覽器網址列輸入 http://localhost:3000/
 
 終端顯示 `Express is running on http://localhost:3000` 即啟動完成，請至[http://localhost:3000](http://localhost:3000)開始使用程式
 
