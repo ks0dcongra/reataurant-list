@@ -5,7 +5,7 @@ const router = express.Router()
 // 引用 Todo model
 const Restaurant = require('../../models/restaurant')
 
-//渲染多個餐廳
+// 渲染多個餐廳
 router.get('/', (req, res) => {
   return Restaurant.find() // 取出 Todo model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error)) // 錯誤處理
 })
 
-//搜尋多個頁面
+// 搜尋多個頁面
 router.get('/search', (req, res) => {
   let keyword = req.query.keywords
   let sort = `'${req.query.option}'`
@@ -33,15 +33,7 @@ router.get('/search', (req, res) => {
     sort = 'location'
   }
 
-
-
-
   keyword = keyword.trim().toLowerCase()
-
-
-
-
-
 
   Restaurant.find()
     .lean()
